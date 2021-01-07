@@ -1,0 +1,19 @@
+FROM node:10
+
+ENV MONGO_DB_USERNAME=admin \
+    MONGO_DB_PWD=password
+	
+RUN mkdir -p /bmimongo
+
+WORKDIR /bmimongo
+
+COPY package.json /bmimongo
+
+RUN npm install
+
+COPY . /bmimongo
+
+EXPOSE 3000
+
+CMD ["node", "mongoconnect.js"]
+
